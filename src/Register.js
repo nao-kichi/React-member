@@ -8,9 +8,10 @@ import {
     createUserWithEmailAndPassword,
     onAuthStateChanged
 } from "firebase/auth";
-import { auth } from "./FirebaseConfig.js";
+import { auth, db } from "./FirebaseConfig.js";
 /* 「Navigate,Link」をimport↓ */
 import { Navigate, Link } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
 
 const Register = () => {
     const [registerEmail, setRegisterEmail] = useState("");
@@ -28,7 +29,13 @@ const Register = () => {
                 auth,
                 registerEmail,
                 registerPassword
-            );
+            ).then(async (userCredential) => {
+                await addDoc(collection(db, "users"), {
+                    user_id: userCredential.user.uid,
+                    email: registerEmail,
+                    password: registerPassword,
+                });
+            });
         } catch (error) {
             alert("正しく入力してください");
         }
