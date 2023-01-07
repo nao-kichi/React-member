@@ -2,18 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth, db } from "./FirebaseConfig.js";
+import { auth } from "./FirebaseConfig.js";
 import {
     useNavigate,
     Navigate
 } from "react-router-dom";
 
-import { collection, addDoc } from "firebase/firestore"; 
-
 const Mypage = () => {
     const [user, setUser] = useState("");
-    const [memo, setMemo] = useState("");
-
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
