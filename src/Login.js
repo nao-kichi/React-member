@@ -1,19 +1,18 @@
-/* Login.js（完成版） */
+// Login.js ログイン機能画面
 
+// useState import = 更新する関数である第2引数を呼び出し、第1引数の値にプラスします。
+// onAuthStateChanged = Firebaseが用意してくれている関数
+// Navigate,Linkをimport
 import React, { useState, useEffect } from "react";
-import {
-    signInWithEmailAndPassword,
-    onAuthStateChanged
-} from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "./FirebaseConfig.js";
-/* 「Link」をimport↓ */
 import { Navigate, Link } from "react-router-dom";
 
 const Login = () => {
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
 
-    /* ↓関数「handleSubmit」を定義 */
+    // 関数handleSubmitを定義
     const handleSubmit = async (e) => {
         // これがないとhundloSubmit実行時にブラウザがリロードされてしまう。
         e.preventDefault();
@@ -29,7 +28,7 @@ const Login = () => {
         }
     };
 
-    /* ↓ログインを判定する設定 */
+    // ログインを判定する設定
     const [user, setUser] = useState();
 
     useEffect(() => {

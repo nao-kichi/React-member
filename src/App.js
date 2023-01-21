@@ -1,4 +1,6 @@
-/* App.js */
+// App.js
+// HTMLを使用しない代わりに、React Routerを使用する。
+// React Router=複数ページを表示させる
 
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
